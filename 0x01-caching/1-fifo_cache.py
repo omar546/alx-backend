@@ -1,38 +1,40 @@
 #!/usr/bin/env python3
-""" FIFOCache, inherits from BaseCaching, a caching system """
+"""
+FIFOCache Module
+"""
+from base_caching import BaseCaching
 
-Base = __import__('base_caching').BaseCaching
 
-
-class FIFOCache(Base):
-    """ class FIFOCache """
-
+class FIFOCache(BaseCaching):
+    """
+    implements a FIFO (First In, First Out) caching system.
+    """
     def __init__(self):
-        """ Init"""
+        """
+        Initialize.
+        """
         super().__init__()
-        self.order = []
+        self.fifo = []
 
     def put(self, key, item):
-        """ setter (put) """
-        if key and item:
-            if key in self.cache_data:
-                # If key already exists, move it to the end of the order list
-                self.order.remove(key)
-                self.order.append(key)
-                self.cache_data[key] = item
-                return
-
-            if len(self.cache_data) >= Base.MAX_ITEMS:
-                # If cache is full, discard the oldest item
-                discarded = self.order.pop(0)
-                del self.cache_data[discarded]
-                print("DISCARD:", discarded)
-
-            self.cache_data[key] = item
-            self.order.append(key)
+        """
+        Setter (add).
+        """
+        if not key or not item:
+            return
+        if key not in self.fifo and len(self.fifo) >= self.MAX_ITEMS:
+            removed = self.fifo.pop(0)
+            self.cache_data.pop(removed)
+            print("DISCARD: {}".format(removed))
+        if key in self.fifo:
+            self.fifo.remove(key)
+        self.cache_data[key] = item
+        self.fifo.append(key)
 
     def get(self, key):
-        """ getter """
-        if key in self.cache_data:
-            return self.cache_data[key]
-        return None
+        """
+        Getter (Retrieve).
+        """
+        if not key:
+            return None
+        return self.cache_data.get(key)
