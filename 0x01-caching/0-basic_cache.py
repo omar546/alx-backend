@@ -8,19 +8,18 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """
-    BasicCache class
-    This class implements a basic caching system
+    implements a basic caching system
     without any limit on the number of items stored.
     """
     def __init__(self):
         """
-        Initialize the BasicCache instance.
+        Initialize.
         """
         super().__init__()
 
     def put(self, key, item):
         """
-        Add an item to the cache.
+        Setter (Add).
         """
         if not key or not item:
             return
@@ -28,7 +27,7 @@ class BasicCache(BaseCaching):
 
     def get(self, key):
         """
-        Retrieve an item from the cache by key.
+        Getter (Retrieve).
         """
         if not key:
             return None
