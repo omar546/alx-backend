@@ -1,24 +1,35 @@
 #!/usr/bin/env python3
-""" BasicCache inherits from BaseCaching """
+"""
+BasicCache Module
+"""
 
 from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """ class BasicCache implements a basic caching system
-    without any limit on the number of items stored """
-
+    """
+    BasicCache class
+    This class implements a basic caching system
+    without any limit on the number of items stored.
+    """
     def __init__(self):
-        """ Init """
+        """
+        Initialize the BasicCache instance.
+        """
         super().__init__()
 
     def put(self, key, item):
-        """ setter """
-        if key and item:
-            self.cache_data[key] = item
+        """
+        Add an item to the cache.
+        """
+        if not key or not item:
+            return
+        self.cache_data[key] = item
 
     def get(self, key):
-        """ getter """
-        if key in self.cache_data:
-            return self.cache_data[key]
-        return None
+        """
+        Retrieve an item from the cache by key.
+        """
+        if not key:
+            return None
+        return self.cache_data.get(key)
