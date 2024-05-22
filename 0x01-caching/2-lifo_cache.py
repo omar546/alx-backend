@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ LIFOCache, inherits from BaseCaching, a caching system """
 
 Base = __import__('base_caching').BaseCaching

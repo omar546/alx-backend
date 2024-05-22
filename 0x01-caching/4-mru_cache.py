@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ CMRUCache, inherits from BaseCaching, a caching system """
 
 from collections import OrderedDict
