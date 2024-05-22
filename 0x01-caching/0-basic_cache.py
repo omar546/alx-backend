@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 """ BasicCache inherits from BaseCaching """
 
-Base = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
-class BasicCache(Base):
-    """ class BasicCache """
+class BasicCache(BaseCaching):
+    """ class BasicCache implements a basic caching system
+    without any limit on the number of items stored """
+
+    def __init__(self):
+        """ Init """
+        super().__init__()
+        self.order = []
 
     def put(self, key, item):
         """ setter """
