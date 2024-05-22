@@ -16,10 +16,14 @@ class FIFOCache(Base):
         """ setter (put) """
         if key and item:
             if key in self.cache_data:
+                # If key already exists, move it to the end of the order list
+                self.order.remove(key)
+                self.order.append(key)
                 self.cache_data[key] = item
                 return
 
             if len(self.cache_data) >= Base.MAX_ITEMS:
+                # If cache is full, discard the oldest item
                 discarded = self.order.pop(0)
                 del self.cache_data[discarded]
                 print("DISCARD:", discarded)
