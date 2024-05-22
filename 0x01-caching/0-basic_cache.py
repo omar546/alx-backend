@@ -11,7 +11,6 @@ class BasicCache(BaseCaching):
     def __init__(self):
         """ Init """
         super().__init__()
-        self.order = []
 
     def put(self, key, item):
         """ setter """
